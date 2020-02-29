@@ -89,12 +89,47 @@ namespace _01._03
             Random rand = new Random();
             int size = 30;
             int[] arr = new int[size];
+            List<int> numbers = new List<int>();
+
+
+            int count = 0;
+            int countMax = 0;
 
             for (int i = 0; i < size; i++) {
                 arr[i] = rand.Next(100);
                 Console.Write(arr[i] + " ");
             }
             Console.Write("\n");
+            for (int i = 1; i < size; i++)
+            {
+                if (arr[i] > arr[i - 1])
+                {
+                    count++;
+                }
+                else if (count > countMax) {
+                    countMax = count;
+                    count = 0;
+                }
+          
+            }
+            for (int i = 1; i < size ; i++)
+            {
+                if (arr[i] > arr[i - 1])
+                {
+                    count++;
+                }
+                else if (count == countMax)
+                {
+                    for (int j = i-count; j < i; j++) {
+                        numbers.Add(arr[j]);
+                    }
+                }
+            }
+
+            foreach (int n in numbers)
+            {
+                Console.WriteLine(n);
+            }
             #endregion
         }
     }
